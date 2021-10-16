@@ -74,7 +74,7 @@ const addAddress = async (id) => {
 
 
 //4 - Chama makeUser
-makeUser();
+//makeUser();
 
 //5 - Para adicionar um address usando a função addAddress copie um id do banco para funcionar
-addAddress('6169de35dbda4941af3edf65');
+addAddress('616a238379bd79d86b5a916c');
