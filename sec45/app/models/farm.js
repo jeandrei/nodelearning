@@ -22,6 +22,10 @@ const farmSchema = new Schema({
             ref: 'Product'
         }
     ]
-})
+});
+
+const Farm = mongoose.model('Farm', farmSchema);
+
+module.exports = Farm;
 
 //Relação product - farm one to many
