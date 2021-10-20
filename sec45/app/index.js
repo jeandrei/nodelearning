@@ -42,6 +42,16 @@ app.get('/farms/:id', async (req, res) => {
     res.render('farms/show', { farm });
 })
 
+//aula 461
+app.delete('/farms/:id', async (req, res) => {
+    const farm = await Farm.findByIdAndDelete(req.params.id);
+    //apos deletar a farm ele executa uma middleware que remove os produtos da farm
+    //em models/farm.js/farmSchema.post o método tem que ser igual nos dois se aqui
+    //eu chamo findByIdAndDelete na middleware tem que ser findOneAndDelete
+    console.log("DELETING!!!!!!")
+    res.redirect('/farms');
+})
+
 app.post('/farms', async (req, res) => {
     //para verificar se os dados foram enviados use re.send(req.body)
     //mas tem que estar abaixo da linha app.use(express.urlencoded({ extended: true }));
