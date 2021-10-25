@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Product = require('./models/product');
+const Farm = require('./models/farm');
 
 mongoose.connect('mongodb://localhost:27017/farmStand', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -57,4 +58,37 @@ Product.insertMany(seedProducts)
     })
     .catch(e => {
         console.log(e)
-    })
+    });
+
+   
+
+    const seedFarms = [
+        {
+            name: 'Dex Farm',
+            city: 'Piçarras',
+            email: 'dexfarm@gmail.com'
+        },
+        {
+            name: 'Belinha Farm',
+            city: 'Piçarras',
+            email: 'belinhafarm@gmail.com'
+        },
+        {
+            name: 'Meg Farm',
+            city: 'Piçarras',
+            email: 'megfarm@gmail.com'
+        },
+        {
+            name: 'Biju Farm',
+            city: 'Piçarras',
+            email: 'bijufarm@gmail.com'
+        },        
+    ]
+    
+    Farm.insertMany(seedFarms)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(e => {
+            console.log(e)
+        })
