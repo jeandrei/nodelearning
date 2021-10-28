@@ -18,6 +18,8 @@
  * 14 - Criar a rota para o formulário de login app.get('/login')
  * 15 - Criar o form para realização do login views/login
  * 16 - Cria a rota app.post('/login') para validar o login
+ * 17 - Cria a função para verificar se o usuário está logado
+ * em models/user.js userSchema.statics.findAndValidate
  * 17 - Criação da session instala npm i express-session
  * 18 - Require no express-session const session = require('express-session'
  * 19 - define a session com a chave app.use(session({ secret: 'notagoodsecret' }))
@@ -34,6 +36,9 @@
  * app.post('/logout') req.session.user_id = null;
  * 23 - Criamos um formulário para efetuar o post logout 
  * ele criou /view secret.ejs
+ * 24 - Cria uma middleware requireLogin que sempre vai verificar se o usuário está
+ * logado, se não estiver logado redireciona para o login
+ * 
  * 
  */
 
@@ -60,6 +65,16 @@ app.set('views', 'views');
 app.use(express.urlencoded({extended: true}));
 app.use(session({ secret: 'notagoodsecret' }));
 
+//middleware que vai verificar se o usuário está logado Aula 502
+//se o usuário não estiver logado vai redirecionar para o login
+//caso contrário continua com o next
+const requireLogin = (req, res, next) => {
+    if(!req.session.user_id){
+        return res.redirect('/login');
+    }
+    next();
+}
+
 app.get('/', (req, res) => {
     res.send('THIS IS THE HOME PAGE');
 })
@@ -73,23 +88,14 @@ app.post('/login', async (req, res) => {
     //res.send(req.body);
     //pego o username e password enviado
     const { username, password } = req.body;
-    //localizo o usuário User.findOne({ username:username }); 
-    //quando os dois parametros são iguais não precisa fazer como na linha acima
-    //basta colocar uma vez como na linha abaixo
-    const user = await User.findOne({ username });
-    //bcrypt.compare recebe dois parametros o primeiro é o texto simples sem criptografia
-    //o segundo é o texto criptografado
-    //então password é o texto que o usuário digitou
-    //user.password é o texto criptografado que veio do banco de dados
-    //como resultado final o bcrypt.compare vai trazer true ou false
-    //passamos o resultado para a constante validPassword
-    const validPassword = await bcrypt.compare(password, user.password);
+    //findAndValidate está em models/user.js
+    const foundUser = await User.findAndValidate(username, password); 
     //IMPORTANTE na verificação quando o login não passa
     //nunca informar o que está errado, pois facilita para a pessoa mal intencionada
     //simplesmente informe que o login ou a senha estão erradas
-    if(validPassword){
+    if(foundUser){
         //req.session tem que vim antes do res.send
-        req.session.user_id = user._id; 
+        req.session.user_id = foundUser._id; 
         res.redirect('/secret');
     } else {
         res.redirect('/login');
@@ -107,14 +113,11 @@ app.post('/register', async (req, res) => {
     const { password, username } = req.body;
     //aplicamos a criptografia ao password 12 é o delay, padrão é 12
     //mas quanto maior o número mais demorado é para realizar o hash
-    const hash = await bcrypt.hash(password, 12);
+    //const hash = await bcrypt.hash(password, 12);
     //para verificar o password criptografado
     //res.send(hash);
     //Salva o usuário no banco de dados
-    const user = new User({
-        username,
-        password: hash
-    })
+    const user = new User({ username, password });
     await user.save();
     req.session.user_id = user._id;    
     res.redirect('/secret');
@@ -128,13 +131,13 @@ app.post('/logout', (req, res) => {
     res.redirect('/login');
 })
 
-app.get('/secret', (req, res) => {
-    if(!req.session.user_id){
-        return res.redirect('/login');
-    } else {
-        res.render('secret');
-    }    
-})
+app.get('/secret', requireLogin, (req, res) => {    
+        res.render('secret');        
+});
+
+app.get('/topsecret', requireLogin, (req, res) => {    
+    res.send("TOP SECRET")      ;
+});
 
 app.listen(3000, () => {
     console.log("SERVING YOUR APP!");
