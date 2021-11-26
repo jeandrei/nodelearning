@@ -13,4 +13,5 @@
 console.log('Configuração do arquivo .gitignore');
 console.log('============================================================================');
 console.log(`Os conteúdos informados no arquivo .gitignore não serão enviados para o github`);
+console.log(`Verifique que nesta pasta no github não foi feito upload do arquivo .env e nem da pasta node_modules`);
 console.log('============================================================================');
