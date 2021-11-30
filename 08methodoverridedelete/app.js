@@ -10,16 +10,17 @@ require('dotenv').config();
 const port = process.env.PORT;
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
+app.use(express.urlencoded({ extended: true }));
+
 //===============================================Definimos uma const methodOverride===================
 const methodOverride = require('method-override');
 //================================================
 
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(express.static('public'));
 const path = require('path');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 //===================================================Definimos que a string chave será _method =================
 //Assim no form o link fica  <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
 app.use(methodOverride('_method'));
@@ -33,13 +34,8 @@ app.get('/people/new', (req, res) => {
 })
 
 
-app.post('/people/save', urlencodedParser, (req, res) => {    
-    response = {
-        first_name:req.body.first_name,
-        last_name:req.body.last_name
-    };
-    console.log(response);
-    res.end(JSON.stringify(response));  
+app.post('/people/save', (req, res) => {    
+    console.log(req.body);
 })
 
 //Formulário http://ip:porta/people/delete

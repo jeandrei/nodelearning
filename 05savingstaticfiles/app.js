@@ -21,6 +21,8 @@ const app = express();
 //basta chamar ip:porta/conteúdo exemplo dentro temos uma pasta imagens e dentro da pasta imagens tem o 
 //arquivo cento.jpg logo para chamar esse arquivo no browse simplesmente digitamos
 //http://ip:porta/imagens/centro.jpg
+//ou se vc quiser referenciar por exemplo a um arquivo hello.js que está dentro de 
+//public vc pode fazer src='\hello.css' apenas não precisa colocar o caminho completo
 app.use(express.static('public'));
 
 app.get('/', function (req, res) {

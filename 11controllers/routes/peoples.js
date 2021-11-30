@@ -1,18 +1,14 @@
-//Para os routes precisa no mínimo o express
 const express = require('express');
-//Definimos uma rota com express.Router
 const router = express.Router();
-//Criamos as rotas e ao invés de usar app.get e assim por diante usamos router.get...
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-router.get('/new', (req, res) => {
-    res.render('people/new');
-});
+const peoples = require('../controllers/peoples');
+router.get('/new', peoples.newPeople);
 
 
  router.post('/save', (req, res) => {    
-   console.log(req.body) ;
+    console.log(req.body);
 }); 
 
 

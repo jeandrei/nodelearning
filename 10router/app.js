@@ -1,5 +1,17 @@
 /**
- *
+ * ROUTERS
+ * 
+ * 1-Crie a pasta routes
+ * 2-Para cada conjunto de rotas crie um arquivo js neste caso para todas as rotas de peoples routes/peoples.js
+ * 3-De um require em todos os módulos necessários para aquela rota exemplo: express,body-parser etc
+ * 4-No require do express ao invés de atribuirmos a uma const app atribuimos a uma const router
+ * const router = express.Router();
+ * 5-A partir daí as rotas são montadas da seguinte forma router.get('/new', router.post, router.delete etc
+ * 6-Importar as rotas para o app
+ * atribui a rota a uma constante
+ * const peoples = require('./routes/peoples');
+ * 7-Adiciona o app.use('/oqueVoceQuerParaChamarArota',constante)
+ * app.use('/peoples', peoples);
  *
  */
 
@@ -8,9 +20,8 @@ require('dotenv').config();
 const port = process.env.PORT;
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
+app.use(express.urlencoded({ extended: true }));
 const methodOverride = require('method-override');
-let urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(express.static('public'));
 const path = require('path');
 app.set('views', path.join(__dirname, 'views'));

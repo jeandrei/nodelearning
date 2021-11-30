@@ -15,14 +15,11 @@ require('dotenv').config();
 const port = process.env.PORT;
 const express = require('express');
 const app = express();
+app.use(express.urlencoded({ extended: true }));
 //====================================REQUIRE FS==================
 const fs = require("fs");
 //======================================================
-const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
-
-
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(express.static('public'));
 const path = require('path');
 app.set('views', path.join(__dirname, 'views'));
@@ -40,7 +37,7 @@ app.get('/people/new', (req, res) => {
 })
 
 
-app.post('/people/save', urlencodedParser, (req, res) => {    
+app.post('/people/save', (req, res) => {    
     response = {
         first_name:req.body.first_name,
         last_name:req.body.last_name
