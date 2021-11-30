@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=], initial-scale=1.0">
+    <title>Nova Pessoa</title>
+</head>
+<body>
+    <h1>Cadastrando nova pessoa</h1>
+    <form action="/pessoas" method = "POST">
+        Nome:           <input type="text" name="pessoaNome">  <br>
+        Sobrenome:      <input type="text" name="pessoaSobrenome"> <br>
+        Idade:          <input type="number" name="pessoaIdade"> <br>
+        Endereço:       <input type="text" name="pessoaEndereco"> <br>
+        Naturalidade:   <input type="text" name="pessoaNaturalidade">
+        <input type = "submit" value = "Enviar">
+     </form>
+
+     <form action="/pessoas/?_method=DELETE" method = "POST">        
+        <input type = "submit" value = "Deletar">
+     </form>
+</body>
+</html>

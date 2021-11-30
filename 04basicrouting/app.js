@@ -14,11 +14,9 @@
  * 
  */
 
-//Pego a porta configurada lá no arquivo .env
 require('dotenv').config();
 const port = process.env.PORT;
 
-//require no express
 const express = require('express');
 const app = express();
 

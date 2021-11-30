@@ -3,7 +3,7 @@
  * 
  * 1-Crie a pasta routes
  * 2-Para cada conjunto de rotas crie um arquivo js neste caso para todas as rotas de peoples routes/peoples.js
- * 3-De um require em todos os módulos necessários para aquela rota exemplo: express,body-parser etc
+ * 3-De um require em todos os módulos necessários para aquela rota exemplo: express, etc
  * 4-No require do express ao invés de atribuirmos a uma const app atribuimos a uma const router
  * const router = express.Router();
  * 5-A partir daí as rotas são montadas da seguinte forma router.get('/new', router.post, router.delete etc

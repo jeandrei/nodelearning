@@ -7,7 +7,7 @@
  * 
  * Instalamos o ejs npm install ejs
  * Criamos a pasta views onde teremos os formulários neste caso /views/people/new.ejs
- * Criamos o arquivo index.ejs com o formulário
+ * Criamos o arquivo new.ejs com o formulário
  * Criamos a constante path que vai trazer o caminho do servidor e juntaremos com  views formando o caminho 
  * completo para views
  * Definimos o o framework ejs para rendenizar os formulários

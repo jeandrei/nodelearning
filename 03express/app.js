@@ -20,7 +20,7 @@
  * with an object keyed by the cookie names.
  * multer − This is a node.js middleware for handling multipart/form-data.
  * 
- * npm install body-parser --save
+ * npm install body-parser --save //não precisa instalar esse uso o urlencoded
  * npm install cookie-parser --save
  * npm install multer --save
  */
