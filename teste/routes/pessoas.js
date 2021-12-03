@@ -4,15 +4,11 @@ const router = express.Router();
 const pessoas = require('../controllers/pessoas');
 
 
-router.get('/', (req, res) => {
-    res.send('Got a Get request for the homepage');
-});
+router.get('/', pessoas.listPessoas);
 
 router.get('/new', pessoas.newPessoa);
 
-router.post('/', (req, res) => {
-    console.log(req.body);
-});
+router.post('/', pessoas.savePessoa);
 
 router.delete('/', (req, res) => {
     console.log('você clicou em delete');

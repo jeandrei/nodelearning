@@ -20,6 +20,7 @@ module.exports.savePeople = async (req, res) => {
     //People(req.body)vai trazer tudos os valores mas aqui é só exemplo não tem validação
     const newPeople = new People(req.body);
     await newPeople.save();
+    res.redirect('peoples/');
     console.log(`Nova pessoa gravada com sucesso: ${newPeople}`);
 }
 

@@ -47,5 +47,3 @@ People.insertMany(seedPeoples)
     .catch(e => {
         console.log(e);
     })
-
-//Para popular os dados chame node seeds.js
