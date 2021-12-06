@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= people.first_name %></title>
+</head>
+<body>
+    <h1><%= people.first_name %></h1>
+    <ul>
+        <li>Name: <%= people.first_name %> <%= people.last_name %></li>
+        <li>Score: <%= people.score %></li>
+    </ul>
+    <a href="/peoples">Voltar</a>
+    <a href="/peoples/<%= people._id %>/edit">Editar</a>
+   
+    <form action="/peoples/<%= people._id%>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
+
+</body>
+</html>
