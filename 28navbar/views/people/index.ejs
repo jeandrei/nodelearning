@@ -1,0 +1,8 @@
+    <% layout('layouts/boilerplate')%>
+    <h1>Peoples</h1>
+    <ul>
+        <% for(let people of peoples) { %>
+            <li><a href="peoples/<%= people._id %>"><%= people.first_name %> <%= people.last_name %></a></li>
+        <% } %> 
+    </ul> 
+    <a href="/peoples/new">Add</a>    

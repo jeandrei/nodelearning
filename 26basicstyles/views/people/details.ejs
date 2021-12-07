@@ -1,0 +1,12 @@
+    <% layout('layouts/boilerplate')%>
+    <h1><%= people.first_name %></h1>
+    <ul>
+        <li>Name: <%= people.first_name %> <%= people.last_name %></li>
+        <li>Score: <%= people.score %></li>
+    </ul>
+    <a href="/peoples">Voltar</a>
+    <a href="/peoples/<%= people._id %>/edit">Editar</a>
+   
+    <form action="/peoples/<%= people._id%>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>

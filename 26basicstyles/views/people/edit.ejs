@@ -1,0 +1,17 @@
+    <% layout('layouts/boilerplate')%>
+    <h1>Edit People</h1>
+    <form action = "/peoples/<%= people._id %>?_method=PUT" method = "POST">
+        First Name: <input type = "text" name = "first_name" value="<%= people.first_name %>">  <br>
+        Last Name: <input type = "text" name = "last_name" value="<%= people.last_name %>"> <br>
+        
+        <label for="score">Score</label>
+        <select name="score" id="score">
+            <% for(let score of scores) { %> 
+                <option value="<%= score %>" <%= people.score === score ? 'selected' : '' %>><%= score %></option>
+            <% } %>             
+        </select>
+        
+        <br>
+              
+        <input type = "submit" value = "Submit">
+    </form>    

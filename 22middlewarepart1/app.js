@@ -47,6 +47,14 @@ app.use((req,res,next) => {
    return next();
 });
 
+//Se quisesse por exemplo que uma middleware executasse somente em uma rota 
+//específica isso é possível
+//neste caso a middleware só vai executar se for na rota /dogs
+app.use('/dogs', (req, res, next) => {
+   console.log('I love dogs!!!');
+   next();
+})
+
 
 //===========================================================================
 
