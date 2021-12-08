@@ -1,0 +1,40 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="row">
+    <h1 class="text-center">Edit People</h1>
+    <div class="col-6 offset-3">
+        <form action = "/peoples/<%= people._id %>?_method=PUT" method = "POST">
+            <!-- o padrão melhor para name seria name = "people[firstName]" -->
+            
+            <!-- first_name -->
+            <div class="mb-3">
+                <label class="form-label" for="first_name">First Name</label>
+                <input class="form-control" type ="text" name ="first_name" value="<%= people.first_name %>">
+            </div>
+
+            <!-- last_name -->
+            <div class="mb-3">
+                <label class="form-label" for="last_name">Last Name</label>
+                <input class="form-control" type ="text" name ="last_name" value="<%= people.last_name %>">
+            </div>     
+
+                            
+            <!-- score -->
+            <div class="mb-3">
+                <label class="form-label" for="score">Score</label>
+                <select class="form-control form-select" name="score" id="score">
+                    <% for(let score of scores) { %> 
+                        <option value="<%= score %>" <%= people.score === score ? 'selected' : '' %>><%= score %></option>
+                    <% } %>            
+                </select>
+            </div>            
+            
+            <!-- Submit -->
+            <div class="mb-3">
+                <button class="btn btn-success">Submit</button>
+            </div>     
+
+        </form>
+        <a href="/peoples">All Peoples</a>    
+    </div>
+</div>    
