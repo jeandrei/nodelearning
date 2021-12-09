@@ -4,12 +4,9 @@ const ExpressError = require('../utils/ExpressError');
 
 const scores = [0,1,2,3,4,5,6,7,8,9,10];
 
-//===============Pode tirar o try catch das funções async
-//já está sendo chamada no route
+
 module.exports.listPeoples = async (req, res, next) => { 
-        const peoples = await People.find({});
-        //descomente a linha abaixo para verificar o erro na rota /peoples         
-        //peoples.fly();
+        const peoples = await People.find({});        
         res.render('people/index', { peoples });
  }
 
@@ -19,12 +16,13 @@ module.exports.newPeople = (req, res) => {
 }
 
 
-module.exports.savePeople = async (req, res) => {  
-    //================Agora podemos mandar menságens de erro personalizada=====
-    if(!req.body.people) throw new ExpressError('Cadastro inválido', 400);
-    //==================bem como com o código==================================
-    const newPeople = new People(req.body);
+module.exports.savePeople = async (req, res, next) => {  
+    //a linha abaixo da um erro genérico se faltar alguma coisa vai dar o erro cadastro inválido
+    //if(!req.body.people) throw new ExpressError('Cadastro inválido', 400);
+    //Com o joi o erro é mais específico  
+    const newPeople = new People(req.body.people);
     await newPeople.save();
+   //console.log(req.body);  
     res.redirect('peoples/');
     console.log(`Nova pessoa gravada com sucesso!`);
 }
@@ -47,7 +45,11 @@ module.exports.editPeople = async (req, res) => {
 
 module.exports.updatePeople = async (req, res) => {
     const { id } = req.params;
-    const people = await People.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
+    console.log(req.body);
+    //=====================Tive que atualizar essa linha=======================
+    //de req.body para ...req.body.people caso contário não atualizava
+    //depois que eu mudei para people[first_name] ...
+    const people = await People.findByIdAndUpdate(id, { ...req.body.people }, { runValidators: true, new: true });
     console.log(people);
     res.redirect(`/peoples/${people._id}`);
 }

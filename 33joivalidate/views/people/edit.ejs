@@ -8,21 +8,21 @@
             
             <!-- first_name -->
             <div class="mb-3">
-                <label class="form-label" for="first_name">First Name</label>
-                <input class="form-control" type ="text" name ="first_name" value="<%= people.first_name %>">
+                <label class="form-label" for="people[first_name]">First Name</label>
+                <input class="form-control" type ="text" name ="people[first_name]" value="<%= people.first_name %>">
             </div>
 
             <!-- last_name -->
             <div class="mb-3">
-                <label class="form-label" for="last_name">Last Name</label>
-                <input class="form-control" type ="text" name ="last_name" value="<%= people.last_name %>">
+                <label class="form-label" for="people[last_name">Last Name</label>
+                <input class="form-control" type ="text" name ="people[last_name]" value="<%= people.last_name %>">
             </div>     
 
                             
             <!-- score -->
             <div class="mb-3">
-                <label class="form-label" for="score">Score</label>
-                <select class="form-control form-select" name="score" id="score">
+                <label class="form-label" for="people[score">Score</label>
+                <select class="form-control form-select" name="people[score]" id="people[score]">
                     <% for(let score of scores) { %> 
                         <option value="<%= score %>" <%= people.score === score ? 'selected' : '' %>><%= score %></option>
                     <% } %>            

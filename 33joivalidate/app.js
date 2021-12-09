@@ -1,37 +1,33 @@
 /*
+ * OBS.: PARA PODER FAZER FUNCIONAR COMO A VIDEOAULA
+ * TIVE QUE MUDAR OS NAMES DOS INPUTS DO FORMULÁRIO
+ * SEGUINDO O PADRÃO
+ * people[first_name], people[last_name] e people[score]
+ * pq caso contrário lá na schema do joi ele não da certo nessa linha
+ * people: Joi.object({
+ * pois não aparece people no req.body
+ * Para testar sempre no controller de um console.log(req.body);
+ * a saida tem que ser algo assim
+ * people: { first_name: 'joao', last_name: 'carlos', score: '5' } }
+ * Com essa alteração tive que dar um destruct lá no controller update people
+ * People.findByIdAndUpdate(id, { ...req.body.people }
  * 
- * 
- * Cath async wrap automático
- * Crie o arquivo utils/catchAsync.js
- * Cria a função de wrap catchAsync
- * No router da um require na função catchAsync
- * Depois no controller não precisa mais usar o try catch para async
- * Teste novamente os endereços 
- * /peoples tem que dar o erro peoples.fly is not a function !
- * esse erro está lá no controller listPeople essa função não existe
- * o segundo erro teste uma página inexistente 
- * /peoples123 tem que dar o erro Página não encontrada !
- * o console não pode dar erro pois estamos capturando com a função catchAsync
- * Como funciona a função catchAsync
- * imagine a rota tem que ser async
- * 
- * app.get('/peoples', async (req, res, next) => {
- *    código
- * });
- * 
- * Para usar nesse exemplo fariamos
- *  app.get('/peoples', catchAsync(async (req, res, next) => {
- *    código
- * }));
- * Observe estamos selecionando todo o async da função
- * 
- * Logo na rota quando já temos o controller podemos chamar da seguinte forma
- * router.get('/', catchAsync(peoples.listPeoples));
- * basicamente peoples.listPeoples é o que está lá no controller dentro do async
- * 
- * 
- * ATENÇÃO só funciona para async então para rotas post, put, delete
- * se tentar usar em uma rota get sem async vai dar ERRO
+ * Validação server side com joi validator
+ * fonte: https://joi.dev/api/?v=17.5.0
+ * Instalamos o joi
+ * npm install joi --save
+ * Agora vamos criar uma middleware para validação de cada ator
+ * exemplo validatePeople, poderia ter validateUser assim por diante
+ * Na raiz do sistema criamos um arquivo schemas.js
+ * o route da um require no middleware.js que por sua vez
+ * da um require no schemas.js
+ * no schemas.js damos um require no joi
+ * A sequencia de criação é
+ * Crie o arquivo schemas.js na raiz do app
+ * Dentro do schemas.js crie a validação do joi
+ * Dentro do arquivo middleware crie uma middleware de validação
+ * validatePeople
+ * e por último chame essa middleware no arquivo de rota routes/peoples
  */
 
 
@@ -79,30 +75,18 @@ db.once("open", () => {
 });
 
 
-//===============================ROTA PARA PÁGINAS NÃO ENCONTRADAS===============
-//Se for chamado uma rota/página inexistente sempre vai cair aqui aula 442
-//vai criar um objeto ExpressError lá do arquivo utils/ExpressError.js 
-//o next vai passar para a linha abaixo app.use na variável err
+
 app.all('*', (req, res, next) => {
    next(new ExpressError('Página não encontrada', 404));
 });
-//================================================================================
 
 
-//=======COMO ÚLTIMO RECURSO SE AINDA DER ALGUM ERRO DAMOS A MENSAGEM QUE ALGO DEU ERRADO====
-//aqui tem que ser antes do app.listenen como último recurso mesmo
-app.use((err,req, res, next) => {
-   //os valores de err vem do app.all
-   //os valores de statusCode e message vai ser passada por err de app.all mas na verdade vem lá
-   //do ExpressError
-   //passa o que tem em err para statusCode se não tiver nada passa 500 valor defoult
+
+app.use((err,req, res, next) => {  
    const { statusCode = 500 } = err;
-   // se não tiver nada em err.message passa Ho no something went wrong
    if(!err.message) err.message = 'Oh No, Something Went Wrong!';
-   //render a pagina error.ejs passando a variavel err que vai conter o erro e o código status
    res.status(statusCode).render('error', { err });   
 })
-//=======================================================================================
 
 
 const server = app.listen(port, () => {
