@@ -1,0 +1,21 @@
+<% layout('layouts/boilerplate')%>
+
+<a class="btn btn-success mt-5 mb-5" href="/peoples/new">Add New</a>
+
+    <div class="row">
+        <h1 class="text-center mb-3">Peoples</h1>
+        <div class="col-6 offset-3">
+            <% for(let people of peoples) { %>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <%= people.first_name %> <%= people.last_name %>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Score: <%= people.score %></h5>
+                        <p class="card-text">The most rated score for <%= people.first_name %> was: <%= people.score %></p>
+                        <a href="peoples/<%= people._id %>" class="btn btn-primary">Ver</a>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
