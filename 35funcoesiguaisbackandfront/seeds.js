@@ -20,10 +20,10 @@ db.once("open", () => {
 const seedCadastro = [
     {
         cadastroNome: 'Jeandrei Walter',
-        cadastroCpf: '004.620.059-25',  
+        cadastroCpf: '5465465465',  
         cadastroEmail: 'jean@gmail.com',
-        cadastroCelular: '(47)99116-9267',
-        cadastroTelefone: '(47)3345-4025',
+        cadastroCelular: '(47)99116-8745',
+        cadastroTelefone: '(47)3345-8955',
         cadastroBairro: 'Bairro teste',
         cadastroRua: 'Rua teste',
         cadastroNumero: '66',

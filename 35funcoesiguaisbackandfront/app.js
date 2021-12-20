@@ -1,4 +1,25 @@
-//12
+
+/**
+ * Mesma função de validação em backend e frontend
+ * Criamos o arquivo public/javascripts/valida.js
+ * Criamos as funções de validação no formato javascript
+ * e ao final verificamos se está sendo solicitado tipo module e module.exports
+ * se sim adicionamos o module exports
+ * No model models/cadastro.js damos um require no arquivo 
+ * Valida = require('../public/javascripts/valida');
+ * Em que Valida passa a ter acesso as funções de validação
+ * Em que chamamos dentro da Schema assim Valida.validaCPF
+ * Dando a mensagem de erro customizada
+ * Para utilizar no frontend basta dar um script src no arquivo
+ * Como no arquivo views/cadastros/new.ejs 
+ *<script src="/javascripts/valida.js"></script> 
+ * Para testar coloque dados que não passam na validação do arquivo seeds2.js
+ * E tente inserir com node seeds2.js
+ * E no frontend abra o arquivo ip:3000/cadastros/new
+ * Aperte F12 e no console rode uma função como validaCPF('00');
+ * vai ter que retornar ture or false
+ * 
+ */
 
 
 //arquivo de configuração secreta .env
