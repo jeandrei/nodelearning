@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 //Dou um require nas funções de validação descomente as linhas validate para ativar a validação
-const Valida = require('../lib/valida');
+const Valida = require('../public/javascripts/valida');
 
 const cadastroSchema = new mongoose.Schema({
     cadastroNome: {
@@ -12,7 +12,7 @@ const cadastroSchema = new mongoose.Schema({
     cadastroCpf: {
         type: String,
         required: [true, 'CPF é um campo obrigatório'],        
-        //validate: [Valida.validaCPF, 'CPF inválido']
+        validate: [Valida.validaCPF, 'CPF inválido']
 
     },
     cadastroEmail: {
@@ -21,17 +21,17 @@ const cadastroSchema = new mongoose.Schema({
         lowercase: true,
         unique: true,
         required: 'Email é obrigatório',
-        //validate: [Valida.validaEmail, 'Informe um email válido']
+        validate: [Valida.validaEmail, 'Informe um email válido']
     },
     cadastroCelular: {
         type: String,        
-        required: [true, 'Celular é um campo obrigatório']
-        //validate: [Valida.validaTelefone, 'Celular inválido'],
+        required: [true, 'Celular é um campo obrigatório'],
+        validate: [Valida.validaTelefone, 'Celular inválido']
     },
     cadastroTelefone: {
         type: String,
         required: [true, 'Telefone é um campo obrigatório'],
-        //validate: [Valida.validaTelefone, 'Telefone inválido']
+        validate: [Valida.validaTelefone, 'Telefone inválido']
         
     },
     cadastroBairro: {
