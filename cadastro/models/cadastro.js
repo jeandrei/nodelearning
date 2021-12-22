@@ -20,7 +20,7 @@ const cadastroSchema = new mongoose.Schema({
         trim: true,
         lowercase: true,
         unique: true,
-        required: 'Email é obrigatório',
+        required: [true, 'Email é obrigatório'],
         validate: [Valida.validaEmail, 'Informe um email válido']
     },
     cadastroCelular: {

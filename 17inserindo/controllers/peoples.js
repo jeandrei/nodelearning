@@ -18,7 +18,10 @@ module.exports.newPeople = (req, res) => {
 //app.use(express.urlencoded({ extended: true }));
 module.exports.savePeople = async (req, res) => {   
     //People(req.body)vai trazer tudos os valores mas aqui é só exemplo não tem validação
-    const newPeople = new People(req.body);
+    //Essa linha é muito importante para funcionar quando colocamos os nomes dos campos como people[firstName];
+    //pq para trazer apenas o firstName que precisamos para validar no model precisamos colocar da seguinte forma
+    //req.body.people
+    const newPeople = new People(req.body.people);
     await newPeople.save();
     res.redirect('peoples/');
     console.log(`Nova pessoa gravada com sucesso: ${newPeople}`);
