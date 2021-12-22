@@ -26,12 +26,18 @@ function validaCPF(cpf) {
     return re.test(cpf);    
 };
 
+//Valida Número
+function isNumber(n){
+    return !isNaN(parseFloat(n)) && isFinite(n);
+};
+
 
 
 //Quando for pelo node faço o module.exports
 if(this && typeof module == "object" && module.exports && this === module.exports) {
     module.exports.validaEmail = validaEmail;
     module.exports.validaTelefone = validaTelefone;
-    module.exports.validaCPF = validaCPF;   
+    module.exports.validaCPF = validaCPF;  
+    module.exports.isNumber = isNumber;  
 
  }

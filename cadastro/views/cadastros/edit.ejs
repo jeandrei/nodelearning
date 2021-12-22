@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edição de cadastro</title>
+    <script src="/javascripts/valida.js"></script> 
+</head>
+<body>    
+    <form action="/cadastros/<%= cadastro._id%>?_method=PUT" method="POST">
+        Nome:           <input type="text" id="cadastroNome" name="cadastro[cadastroNome]" value="<%= cadastro.cadastroNome %>">                 <br>
+        CPF:            <input type="text" id="cadastroCpf" name="cadastro[cadastroCpf]" value="<%= cadastro.cadastroCpf %>">                   <br>
+        Email:          <input type="text" id="cadastroEmail" name="cadastro[cadastroEmail]" value="<%= cadastro.cadastroEmail %>">               <br>
+        Celular:        <input type="text" id="cadastroCelular" name="cadastro[cadastroCelular]" value="<%= cadastro.cadastroCelular %>">           <br>
+        Telefone:       <input type="text" id="cadastroTelefone" name="cadastro[cadastroTelefone]" value="<%= cadastro.cadastroTelefone %>">         <br>
+        Bairro:         <input type="text" id="cadastroBairro" name="cadastro[cadastroBairro]" value="<%= cadastro.cadastroBairro %>">             <br>
+        Rua:            <input type="text" id="cadastroRua" name="cadastro[cadastroRua]" value="<%= cadastro.cadastroRua %>">                   <br>
+        Número:         <input type="text" id="cadastroNumero" name="cadastro[cadastroNumero]" value="<%= cadastro.cadastroNumero %>">             <br>
+        Complemento:    <input type="text" id="cadastroComplemento" name="cadastro[cadastroComplemento]" value="<%= cadastro.cadastroComplemento %>">   <br>
+        <input type="submit" value="Enviar">
+    </form> 
+</body>
+</html>

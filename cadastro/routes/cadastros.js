@@ -12,6 +12,13 @@ router.get('/', cadastros.listCadastros);
 router.get('/new', cadastros.newCadastro);
 //Post
 router.post('/', cadastros.saveCadastro);
+//Details
+router.get('/:id', cadastros.detailCadastro);
+//Edit form
+router.get('/:id/edit', cadastros.editCadastro);
+//Update cadastro
+router.put('/:id', cadastros.updateCadastro);
+
 
 router.delete('/', cadastros.deleteCadastro);
 
