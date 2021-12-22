@@ -35,6 +35,13 @@ const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cadastrodb';
 //cadastroSchema
 const Cadastro = require('./models/cadastro');
 
+//morgan
+//const morgan = require('morgan');
+//app.use(morgan('tiny'))
+
+//ejs-mate necessário para o layout boilerplate
+const ejsMate = require('ejs-mate');
+app.engine('ejs', ejsMate);
 
 
 //Rota para o Home
@@ -47,6 +54,9 @@ app.get('/', (req, res) => {
 const cadastros = require('./routes/cadastros');
 app.use('/cadastros', cadastros);
 
+app.use((req,res) => {
+    res.status(404).send('Page not found');
+ });
 
 //Conexão com o banco de dados
 mongoose.connect(dbUrl, {

@@ -41,6 +41,8 @@ module.exports.updateCadastro = async (req, res) => {
     res.redirect(`/cadastros/${cadastro._id}`);
 }
 
-module.exports.deleteCadastro = (req, res) => {
-    res.send('Você clicou em delete');
+module.exports.deleteCadastro = async (req, res) => {
+    const { id } = req.params;
+    const deleteCadastro = await Cadastro.findByIdAndDelete(id);
+    res.redirect('/cadastros')
 };

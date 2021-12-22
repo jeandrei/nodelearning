@@ -1,24 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de cadastro</title>
-    <script src="/javascripts/valida.js"></script> 
-</head>
-<body>    
-    <form action="/cadastros" method="POST">
-        Nome:           <input type="text" id="cadastroNome" name="cadastro[cadastroNome]">                 <br>
-        CPF:            <input type="text" id="cadastroCpf" name="cadastro[cadastroCpf]">                   <br>
-        Email:          <input type="text" id="cadastroEmail" name="cadastro[cadastroEmail]">               <br>
-        Celular:        <input type="text" id="cadastroCelular" name="cadastro[cadastroCelular]">           <br>
-        Telefone:       <input type="text" id="cadastroTelefone" name="cadastro[cadastroTelefone]">         <br>
-        Bairro:         <input type="text" id="cadastroBairro" name="cadastro[cadastroBairro]">             <br>
-        Rua:            <input type="text" id="cadastroRua" name="cadastro[cadastroRua]">                   <br>
-        Número:         <input type="text" id="cadastroNumero" name="cadastro[cadastroNumero]">             <br>
-        Complemento:    <input type="text" id="cadastroComplemento" name="cadastro[cadastroComplemento]">   <br>
-        <input type="submit" value="Enviar">
-    </form> 
-</body>
-</html>
+<% layout('layouts/boilerplate')%>  
+<div class="row">
+    <h1 class="text-center">Novo cadastro</h1>
+    <div class="col-6 offset-3">
+        <form action="/cadastros" method="POST">
+            
+            <div class="mb-3">
+                <label class="form-label" for="cadastroNome">Nome:</label>
+                <input class="form-control" type="text" id="cadastroNome" name="cadastro[cadastroNome]">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="cadastroCpf">Cpf:</label>
+                <input class="form-control" type="text" id="cadastroCpf" name="cadastro[cadastroCpf]">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="cadastroEmail">Email:</label>
+                <input class="form-control" type="text" id="cadastroEmail" name="cadastro[cadastroEmail]">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="cadastroCelular">Celular:</label>
+                <input class="form-control" type="text" id="cadastroCelular" name="cadastro[cadastroCelular]">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="cadastroTelefone">Telefone:</label>
+                <input class="form-control" type="text" id="cadastroTelefone" name="cadastro[cadastroTelefone]">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="cadastroBairro">Bairro:</label>
+                <input class="form-control" type="text" id="cadastroBairro" name="cadastro[cadastroBairro]">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="cadastroRua">Rua:</label>
+                <input class="form-control" type="text" id="cadastroRua" name="cadastro[cadastroRua]">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="cadastroNumero">Numero:</label>
+                <input class="form-control" type="text" id="cadastroNumero" name="cadastro[cadastroNumero]">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="cadastroComplemento">Complemento:</label>
+                <input class="form-control" type="text" id="cadastroComplemento" name="cadastro[cadastroComplemento]">
+            </div>
+                        
+            <input class="btn btn-success mb-3" type="submit" value="Enviar">
+        </form> 
+    </div>
+</div>
+
