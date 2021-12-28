@@ -43,6 +43,9 @@ const Cadastro = require('./models/cadastro');
 const ejsMate = require('ejs-mate');
 app.engine('ejs', ejsMate);
 
+//ErrorHandler
+const ExpressError = require('./utils/ExpressError');
+
 
 //Rota para o Home
 app.get('/', (req, res) => {
@@ -54,9 +57,6 @@ app.get('/', (req, res) => {
 const cadastros = require('./routes/cadastros');
 app.use('/cadastros', cadastros);
 
-app.use((req,res) => {
-    res.status(404).send('Page not found');
- });
 
 //Conexão com o banco de dados
 mongoose.connect(dbUrl, {
@@ -68,6 +68,32 @@ db.on("error", console.log.bind(console, "connection error:"));
 db.once("open", () => {
     console.log("Database connected");
 });
+
+
+//===============================ROTA PARA PÁGINAS NÃO ENCONTRADAS===============
+//o next vai passar para a linha abaixo app.use na variável err
+app.all('*', (req, res, next) => {    
+    next(new ExpressError('Página não encontrada', 404));
+ });
+ //================================================================================
+ 
+ 
+ //=======COMO ÚLTIMO RECURSO SE AINDA DER ALGUM ERRO DAMOS A MENSAGEM QUE ALGO DEU ERRADO====
+ //aqui tem que ser antes do app.listenen como último recurso mesmo
+ app.use((err,req, res, next) => {
+    //os valores de err vem do app.all
+    //os valores de statusCode e message vai ser passada por err de app.all mas na verdade vem lá
+    //do ExpressError
+    //passa o que tem em err para statusCode se não tiver nada passa 500 valor defoult
+    const { statusCode = 500 } = err;
+    // se não tiver nada em err.message passa Ho no something went wrong
+    if(!err.message) err.message = 'Oh No, Something Went Wrong!';
+    //render a pagina error.ejs passando a variavel err que vai conter o erro e o código status
+    res.status(statusCode).render('error', { err });   
+ })
+ //=======================================================================================
+
+
 
 
 //App listening

@@ -2,7 +2,7 @@ const Cadastro = require("../models/cadastro");
 
 
 module.exports.listCadastros = async (req, res) => {
-    const cadastros = await Cadastro.find({});
+    const cadastros = await Cadastro.find({});  
     res.render('cadastros/list', { cadastros });    
 };
 
@@ -12,8 +12,7 @@ module.exports.newCadastro = (req, res) => {
 };
 
 //salva no banco de dados
-module.exports.saveCadastro = async (req, res) => { 
-    console.log(req.body.cadastro);   
+module.exports.saveCadastro = async (req, res) => {     
     const newCadastro = new Cadastro(req.body.cadastro);
     await newCadastro.save();
     res.redirect('cadastros/');   

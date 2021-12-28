@@ -5,25 +5,27 @@ const router = express.Router();
 
 const cadastros = require('../controllers/cadastros');
 
-const middleware = require('../middleware');
+const { middleware, verifyPassword, validaCadastro } = require('../middleware');
+
+const catchAsync = require('../utils/catchAsync');
 
 //Aqui imprimo os dados para confirmar que os dados estão sendo enviados
-router.get('/', cadastros.listCadastros);
+router.get('/', catchAsync(cadastros.listCadastros));
 
-router.get('/secret', middleware.verifyPassword, cadastros.listCadastros);
+router.get('/secret', verifyPassword, catchAsync(cadastros.listCadastros));
 
 //Carrega o formulário para a criação de um novo cadastro
 router.get('/new', cadastros.newCadastro);
 //Post
-router.post('/', cadastros.saveCadastro);
+router.post('/', validaCadastro, catchAsync(cadastros.saveCadastro));
 //Details
-router.get('/:id', cadastros.detailCadastro);
+router.get('/:id', catchAsync(cadastros.detailCadastro));
 //Edit form
-router.get('/:id/edit', cadastros.editCadastro);
+router.get('/:id/edit', catchAsync(cadastros.editCadastro));
 //Update cadastro
-router.put('/:id', cadastros.updateCadastro);
+router.put('/:id', catchAsync(cadastros.updateCadastro));
 
 
-router.delete('/:id', cadastros.deleteCadastro);
+router.delete('/:id', catchAsync(cadastros.deleteCadastro));
 
 module.exports = router;
