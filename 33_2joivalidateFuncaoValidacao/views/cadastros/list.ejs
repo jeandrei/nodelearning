@@ -1,0 +1,6 @@
+<% layout('layouts/boilerplate')%> 
+<h1>Lista de cadastros</h1>
+
+<% for(let cadastro of cadastros) { %> 
+    <li><a href="cadastros/<%= cadastro._id %>"><%= cadastro.cadastroNome %></a></li>
+<% } %> 

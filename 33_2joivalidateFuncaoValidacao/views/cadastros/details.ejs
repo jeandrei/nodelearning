@@ -1,0 +1,22 @@
+<% layout('layouts/boilerplate')%> 
+
+<h1>Details of <%= cadastro.cadastroNome  %> </h1>
+<ul>
+    <li>CPF: <%= cadastro.cadastroCpf  %> </li>
+    <li>Email: <%= cadastro.cadastroEmail  %> </li>
+    <li>Celular: <%= cadastro.cadastroCelular  %> </li>
+    <li>Telefone Fixo: <%= cadastro.cadastroTelefone  %> </li>
+    <li>Bairro: <%= cadastro.cadastroBairro  %> </li>
+    <li>Rua: <%= cadastro.cadastroRua  %> </li>
+    <li>Número: <%= cadastro.cadastroNumero  %> </li>
+    <li>Complemento: <%= cadastro.cadastroComplemento  %> </li>       
+</ul>
+
+<a class="btn btn-warning" href="/cadastros/<%= cadastro._id%>/edit">Editar</a>
+
+<form class="d-inline" action="/cadastros/<%= cadastro._id%>?_method=DELETE" method="POST">
+    <button class="btn btn-danger">Delete</button>
+</form>
+
+<a class="btn btn-dark" href="/cadastros">Voltar</a>
+
