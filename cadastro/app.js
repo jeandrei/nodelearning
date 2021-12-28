@@ -1,24 +1,4 @@
 
-/**
- * Utilizar as funções javascript de validação que funciona tanto no frontend quanto no backend
- * Tem que tar feito a parte do JOI
- * Criamos um rquivo public/javascripts/valida.js com as funções de validação
- * essas funções só podem retornar ture validado e false para não validado
- * e tem que ser feito o module export apenas para o nodejs olhe o arquivo que vc vai entender
- * depois no arquivo schemas que está no raiz damos um require nas funções de validação
- * const Valida = require('./public/javascripts/valida');
- * e no schema utilizamos da seguinte forma
- * .custom((value, helper) => {
-        if(!Valida.validaCPF(value)){
-            return helper.message("CPF Inválido");
-         } else {
-             return true;
-        }
-    })
- * Onde value é o valor passado pelo post
- * e Valida.validaCPF é a função de validação do arquivo public/javascripts/valida
- */
-
 //arquivo de configuração secreta .env
 require('dotenv').config();
 const port = process.env.PORT;
