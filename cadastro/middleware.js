@@ -22,15 +22,33 @@ module.exports.verifyPassword = (req, res, next) => {
  }
 
 
- //middleware para validar backend people a schema está em schemas.js
+ // middleware para validar backend people a schema está em schemas.js
+ // abortEarly: false vai impedir que a validação encerre no primeiro erro
+ // assim validando tudo independente dos erros encontrados na validação
 module.exports.validaCadastro = (req, res, next) => {  
    //console.log(req);
-   const { error } = cadastroSchema.validate(req.body);
+   const { error } = cadastroSchema.validate(req.body, {
+      abortEarly: false
+   });
+   console.log(error.details);
+
+
+   if(!error) return null;
+
+   const errors = {};
+
+   for(let item of error.details){
+      errors[item.path[1]] = item.message;      
+   }
+   console.log(errors);
+ 
+   /*
+   
    if(error){     
        //cria uma unica linha com a mensagem de erro
        const msg = error.details.map(el => el.message).join(',');
        throw new ExpressError(msg, 400);
    } else {
        next();
-   }
+   }*/
 }
