@@ -70,7 +70,7 @@ db.once("open", () => {
 
 
 
-app.all('*', (req, res, next) => {    
+/* app.all('*', (req, res, next) => {    
     next(new ExpressError('Página não encontrada', 404));
  });
  
@@ -79,7 +79,7 @@ app.all('*', (req, res, next) => {
     const { statusCode = 500 } = err;
     if(!err.message) err.message = 'Oh No, Something Went Wrong!';
     res.status(statusCode).render('error', { err });   
- })
+ }) */
 
 
 //App listening

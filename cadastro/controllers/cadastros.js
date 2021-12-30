@@ -1,5 +1,8 @@
 const Cadastro = require("../models/cadastro");
 
+//=========================Require no mongooseErrorFormater============================================
+const { mongooseErrorFormatter } = require('../utils/validationFormatter');
+//=====================================================================================================
 
 module.exports.listCadastros = async (req, res) => {
     const cadastros = await Cadastro.find({});  
@@ -14,7 +17,14 @@ module.exports.newCadastro = (req, res) => {
 //salva no banco de dados
 module.exports.saveCadastro = async (req, res) => {     
     const newCadastro = new Cadastro(req.body.cadastro);
-    await newCadastro.save();
+    //=====================================================Teste a saida do mongoose=====================================
+    try{
+        await newCadastro.save();
+    } catch (e) {
+        return res.send(mongooseErrorFormatter(e));
+    }
+    //==================================================================================================================
+    
     res.redirect('cadastros/');   
 };
 

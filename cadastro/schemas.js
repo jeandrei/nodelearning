@@ -9,7 +9,7 @@ const Valida = require('./public/javascripts/valida');
     cadastro: Joi.object({
         cadastroNome: Joi.string().trim().min(3).required().messages({
             "string.base": `"Nome" tem que ser um texto`,
-            "string.empty": `"Nome" não pode ser vazio`,
+            "string.empty": `"Nome" não pode ser vazio mano`,
             "string.min": `"Nome" tem que ter no mínimo 3 caracteres`,
             "any.required": `"Nome" é um campo obrigatório.`,
           }),
