@@ -11,7 +11,9 @@ module.exports.listCadastros = async (req, res) => {
 
 //rendeniza o formulário
 module.exports.newCadastro = (req, res) => {    
-    res.render('cadastros/new');
+   //==========================================================
+    res.render('cadastros/new', { message: {}, formData: {}, errors: {} });
+   //========================================================= 
 };
 
 //salva no banco de dados

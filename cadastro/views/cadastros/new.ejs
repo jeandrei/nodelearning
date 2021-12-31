@@ -3,10 +3,22 @@
     <h1 class="text-center">Novo cadastro</h1>
     <div class="col-6 offset-3">
         <form action="/cadastros" method="POST">
-            
+                <% if (message) { %>
+                    <%= message.body %> 
+                <% } %>         
             <div class="mb-3">
                 <label class="form-label" for="cadastroNome">Nome:</label>
-                <input class="form-control" type="text" id="cadastroNome" name="cadastro[cadastroNome]">
+                <input 
+                    class="form-control  <%= errors.cadastroNome ? 'is-invalid' : '' %>" 
+                    type="text" id="cadastroNome" 
+                    name="cadastro[cadastroNome]"
+                    value="<%= formData.cadastroNome %>"
+                >
+                <% if (errors.cadastroNome) { %>
+                    <div class="invalid-feedback">
+                        <%= errors.cadastroNome[0] %>
+                    </div> 
+                <% } %>                             
             </div>
 
             <div class="mb-3">

@@ -34,14 +34,26 @@ module.exports.validaCadastro = (req, res, next) => {
       abortEarly: false
    });
 
-   if(validationResult.error){
-      //return res.render('cadastros/new', { message: 'Validation Error'} );
-   }
+   if(validationResult.error){       
+      res.render('cadastros/new', { 
+         message: {
+            type: 'error',
+            body: 'Validation Error'
+         },
+         errors: joiErrorFormatter(validationResult.error),
+         formData: req.body.cadastro
+       });
+  
+  
+    } else {
+       errors = {};
+       next();
+    }
   //================================Teste no joiErrorFormatter===========================
-   res.send(joiErrorFormatter(validationResult.error));
+   //res.send(joiErrorFormatter(validationResult.error));
   //=====================================================================================
 
-next();
+//next();
 /*
    if(!error) return null;
 
