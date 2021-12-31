@@ -19,12 +19,13 @@ module.exports.newCadastro = (req, res) => {
 //salva no banco de dados
 module.exports.saveCadastro = async (req, res) => {     
     const newCadastro = new Cadastro(req.body.cadastro);
+    await newCadastro.save();
     //=====================================================Teste a saida do mongoose=====================================
-    try{
+    /* try{        
         await newCadastro.save();
     } catch (e) {
         return res.send(mongooseErrorFormatter(e));
-    }
+    } */
     //==================================================================================================================
     
     res.redirect('cadastros/');   

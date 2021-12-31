@@ -25,13 +25,13 @@ const cadastroSchema = new mongoose.Schema({
     },
     cadastroCelular: {
         type: String,        
-        required: [true, 'Celular é um campo obrigatório'],
-        validate: [Valida.validaTelefone, 'Celular inválido']
+        //required: [true, 'Celular é um campo obrigatório'],
+        //validate: [Valida.validaTelefone, 'Celular inválido']
     },
     cadastroTelefone: {
         type: String,
-        required: [true, 'Telefone é um campo obrigatório'],
-        validate: [Valida.validaTelefone, 'Telefone inválido']
+        //required: [true, 'Telefone é um campo obrigatório'],
+        //validate: [Valida.validaTelefone, 'Telefone inválido']
         
     },
     cadastroBairro: {

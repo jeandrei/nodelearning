@@ -7,12 +7,19 @@ const Valida = require('./public/javascripts/valida');
  //.trim para evitar passar apensa com um espaço em branco
  module.exports.cadastroSchema = Joi.object({
     cadastro: Joi.object({
-        cadastroNome: Joi.string().trim().min(3).required().messages({
-            "string.base": `"Nome" tem que ser um texto`,
-            "string.empty": `"Nome" não pode ser vazio`,
-            "string.min": `"Nome" tem que ter no mínimo 3 caracteres`,
-            "any.required": `"Nome" é um campo obrigatório.`,
+        
+          cadastroNome: Joi
+          .string()
+          .trim()
+          .min(3)
+          .required()
+          .messages({
+            "string.base": "Nome tem que ser um texto",
+            "string.empty": "Nome não pode ser vazio",
+            "string.min": "Nome tem que ter no mínimo 3 caracteres",
+            "any.required": "Nome é um campo obrigatório."
           }),
+
           cadastroCpf: Joi
           .required()          
           //====================================================================================================================================================================
@@ -26,13 +33,90 @@ const Valida = require('./public/javascripts/valida');
           })
           //===================================================================================================================================================================
           .messages({            
-            "string.empty": `"CPF" não pode ser vazio`,            
+            "string.empty": "CPF não pode ser vazio"            
           }),
-          cadastroEmail: Joi.string().trim().required().min(3).messages({
-            "string.base": `"Email" tem que ser um texto`,
-            "string.min": `"Email" tem que ter ao menos três caracteres`,            
-            "string.empty": `"Email" não pode ser vazio`,
-            "any.required": `"Email" é um campo obrigatório.`,
-          }),     
+
+          cadastroEmail: Joi
+          .string()
+          .trim()
+          .min(3)
+          .required()
+          .custom((value, helper) => {
+            if(!Valida.validaEmail(value)){
+              return helper.message("Email Inválido");
+            } else {
+              return true;
+            }
+          })
+          .messages({
+            "string.base": "Email tem que ser um texto",
+            "string.min": "Email tem que ter ao menos três caracteres",            
+            "string.empty": "Email não pode ser vazio",
+            "any.required": "Email é um campo obrigatório."
+          }),
+
+          cadastroCelular: Joi
+          .string()
+          .allow(null)
+          .allow('') 
+          .custom((value, helper) => {
+            if(!Valida.validaTelefone(value)){
+              return helper.message("Celular Inválido");
+            } else {
+              return true;
+            }
+          })         
+          .messages({
+            "string.base": "Celular Inválido",         
+          }),
+
+          cadastroTelefone: Joi
+          .string()
+          .allow(null)
+          .allow('') 
+          .custom((value, helper) => {
+            if(!Valida.validaTelefone(value)){
+              return helper.message("Telefone Inválido");
+            } else {
+              return true;
+            }
+          })         
+          .messages({
+            "string.base": "Telefone Inválido",         
+          }),
+
+          cadastroBairro: Joi
+          .string()
+          .allow(null)
+          .allow('')          
+          .messages({
+            "string.base": "Bairro Inválido",         
+          }),
+
+          cadastroRua: Joi
+          .string()
+          .allow(null)
+          .allow('')          
+          .messages({
+            "string.base": "Rua Inválida",         
+          }),
+
+          cadastroNumero: Joi
+          .number()
+          .allow(null)
+          .allow('')          
+          .messages({
+            "number.base": "Número Inválido",         
+          }),
+
+          cadastroComplemento: Joi
+          .string()
+          .allow(null)
+          .allow('')          
+          .messages({
+            "string.base": "Complemento Inválido",         
+          })
+             
     }).required()    
 }); 
+

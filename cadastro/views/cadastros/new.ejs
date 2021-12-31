@@ -23,42 +23,130 @@
 
             <div class="mb-3">
                 <label class="form-label" for="cadastroCpf">Cpf:</label>
-                <input class="form-control" type="text" id="cadastroCpf" name="cadastro[cadastroCpf]">
+                <input 
+                    class="form-control  <%= errors.cadastroCpf ? 'is-invalid' : '' %>"  
+                    type="text" 
+                    id="cadastroCpf" 
+                    name="cadastro[cadastroCpf]"
+                    value="<%= formData.cadastroCpf %>"
+                >
+                <% if (errors.cadastroCpf) { %>
+                    <div class="invalid-feedback">
+                        <%= errors.cadastroCpf[0] %>
+                    </div> 
+                <% } %>  
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="cadastroEmail">Email:</label>
-                <input class="form-control" type="text" id="cadastroEmail" name="cadastro[cadastroEmail]">
+                <input 
+                    class="form-control  <%= errors.cadastroEmail ? 'is-invalid' : '' %>" 
+                    type="text" 
+                    id="cadastroEmail" 
+                    name="cadastro[cadastroEmail]"
+                    value="<%= formData.cadastroEmail %>"
+                >
+                <% if (errors.cadastroEmail) { %>
+                    <div class="invalid-feedback">
+                        <%= errors.cadastroEmail[0] %>
+                    </div> 
+                <% } %>  
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="cadastroCelular">Celular:</label>
-                <input class="form-control" type="text" id="cadastroCelular" name="cadastro[cadastroCelular]">
+                <input 
+                    class="form-control  <%= errors.cadastroCelular ? 'is-invalid' : '' %>" 
+                    type="text" 
+                    id="cadastroCelular" 
+                    name="cadastro[cadastroCelular]"
+                    value="<%= formData.cadastroCelular %>"
+                >
+                <% if (errors.cadastroCelular) { %>
+                    <div class="invalid-feedback">
+                        <%= errors.cadastroCelular[0] %>
+                    </div> 
+                <% } %>  
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="cadastroTelefone">Telefone:</label>
-                <input class="form-control" type="text" id="cadastroTelefone" name="cadastro[cadastroTelefone]">
+                <input 
+                    class="form-control  <%= errors.cadastroTelefone ? 'is-invalid' : '' %>" 
+                    type="text" 
+                    id="cadastroTelefone" 
+                    name="cadastro[cadastroTelefone]"
+                    value="<%= formData.cadastroTelefone %>"
+                >
+                <% if (errors.cadastroTelefone) { %>
+                    <div class="invalid-feedback">
+                        <%= errors.cadastroTelefone[0] %>
+                    </div> 
+                <% } %>  
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="cadastroBairro">Bairro:</label>
-                <input class="form-control" type="text" id="cadastroBairro" name="cadastro[cadastroBairro]">
+                <input 
+                    class="form-control  <%= errors.cadastroBairro ? 'is-invalid' : '' %>" 
+                    type="text" 
+                    id="cadastroBairro" 
+                    name="cadastro[cadastroBairro]"
+                    value="<%= formData.cadastroBairro %>"
+                >
+                <% if (errors.cadastroBairro) { %>
+                    <div class="invalid-feedback">
+                        <%= errors.cadastroBairro[0] %>
+                    </div> 
+                <% } %>  
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="cadastroRua">Rua:</label>
-                <input class="form-control" type="text" id="cadastroRua" name="cadastro[cadastroRua]">
+                <input 
+                    class="form-control  <%= errors.cadastroRua ? 'is-invalid' : '' %>" 
+                    type="text" 
+                    id="cadastroRua" 
+                    name="cadastro[cadastroRua]"
+                    value="<%= formData.cadastroRua %>"
+                >
+                <% if (errors.cadastroRua) { %>
+                    <div class="invalid-feedback">
+                        <%= errors.cadastroRua[0] %>
+                    </div> 
+                <% } %>  
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="cadastroNumero">Numero:</label>
-                <input class="form-control" type="text" id="cadastroNumero" name="cadastro[cadastroNumero]">
+                <input 
+                    class="form-control  <%= errors.cadastroNumero ? 'is-invalid' : '' %>" 
+                    type="text" 
+                    id="cadastroNumero" 
+                    name="cadastro[cadastroNumero]"
+                    value="<%= formData.cadastroNumero %>"
+                >
+                <% if (errors.cadastroNumero) { %>
+                    <div class="invalid-feedback">
+                        <%= errors.cadastroNumero[0] %>
+                    </div> 
+                <% } %>  
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="cadastroComplemento">Complemento:</label>
-                <input class="form-control" type="text" id="cadastroComplemento" name="cadastro[cadastroComplemento]">
+                <input 
+                    class="form-control  <%= errors.cadastroComplemento ? 'is-invalid' : '' %>" 
+                    type="text" 
+                    id="cadastroComplemento" 
+                    name="cadastro[cadastroComplemento]"
+                    value="<%= formData.cadastroComplemento %>"
+                >
+                <% if (errors.cadastroComplemento) { %>
+                    <div class="invalid-feedback">
+                        <%= errors.cadastroComplemento[0] %>
+                    </div> 
+                <% } %>  
             </div>
                         
             <input class="btn btn-success mb-3" type="submit" value="Enviar">
