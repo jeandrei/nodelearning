@@ -43,7 +43,7 @@ module.exports.detailCadastro = async (req, res) => {
 module.exports.editCadastro = async (req, res) => {
     const { id } = req.params;
     const cadastro = await Cadastro.findById(id);
-    res.render('cadastros/edit', { cadastro });
+    res.render('cadastros/edit', { cadastro, message: {}, formData: {}, errors: {} });
 }
 //Update cadastro
 module.exports.updateCadastro = async (req, res) => {

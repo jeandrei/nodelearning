@@ -25,6 +25,63 @@ module.exports.verifyPassword = (req, res, next) => {
  }
 
 
+
+
+ module.exports.validaSchema = (schema, redirect) => {  
+   return (req, res, next) => {    
+      const validationResult = schema.validate(req.body, {
+         abortEarly: false
+      });
+   
+      
+      
+      //se tem id quer dizer que é uma atualização
+      if(req.params.id){
+         const { id } = req.params; 
+         const {cadastro2:{teste:'seilamano'}};
+      } 
+ 
+         if(validationResult.error){       
+            res.render(redirect, { 
+               cadastro:{
+                  _id:id
+               },
+               message: {
+                  type: 'error',
+                  body: 'Validation Error'
+               },
+               errors: joiErrorFormatter(validationResult.error),
+               formData: req.body.cadastro
+               });
+         
+         
+            } else {
+               errors = {};
+               next();
+            }
+     
+   }//return
+}//module.exports
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  // middleware para validar backend people a schema está em schemas.js
  // abortEarly: false vai impedir que a validação encerre no primeiro erro
  // assim validando tudo independente dos erros encontrados na validação
@@ -77,7 +134,7 @@ module.exports.validaCadastro = (req, res, next) => {
 }
 
 
-module.exports.validaSchema = (schema, redirect) => {  
+module.exports.validaSchemaAntigo = (schema, redirect) => {  
    return (req, res, next) => {
       const validationResult = schema.validate(req.body, {
          abortEarly: false
@@ -100,3 +157,54 @@ module.exports.validaSchema = (schema, redirect) => {
        }
    }
  }
+
+
+ module.exports.validaSchema2 = (schema, redirect) => {  
+   return (req, res, next) => {    
+      const validationResult = schema.validate(req.body, {
+         abortEarly: false
+      });
+   
+      //se tem id quer dizer que é uma atualização
+      if(req.params.id){
+         const { id } = req.params;  
+         if(validationResult.error){ 
+            res.render(redirect, { 
+               cadastro:{
+                  _id:id
+               },
+               message: {
+                  type: 'error',
+                  body: 'Validation Error'
+               },
+               errors: joiErrorFormatter(validationResult.error),
+               formData: req.body.cadastro
+            });          
+         } else {
+            errors = {};
+            next();
+         }//else req.params.id
+      
+      //caso não tenha id é um registro novo
+      } else {//if(req.params.id)
+         if(validationResult.error){       
+            res.render(redirect, { 
+               message: {
+                  type: 'error',
+                  body: 'Validation Error'
+               },
+               errors: joiErrorFormatter(validationResult.error),
+               formData: req.body.cadastro
+               });
+         
+         
+            } else {
+               errors = {};
+               next();
+            }
+      }//else if req.params.id
+   }//return
+}//module.exports
+
+
+

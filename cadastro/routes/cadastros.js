@@ -29,7 +29,7 @@ router.get('/:id', catchAsync(cadastros.detailCadastro));
 //Edit form
 router.get('/:id/edit', catchAsync(cadastros.editCadastro));
 //Update cadastro
-router.put('/:id', validaSchema(cadastroSchema, 'cadastros/new'), catchAsync(cadastros.updateCadastro));
+router.put('/:id', validaSchema(cadastroSchema, 'cadastros/edit'), catchAsync(cadastros.updateCadastro));
 
 
 router.delete('/:id', catchAsync(cadastros.deleteCadastro));
