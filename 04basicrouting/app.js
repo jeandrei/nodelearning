@@ -15,7 +15,7 @@
  */
 
 require('dotenv').config();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 const express = require('express');
 const app = express();
@@ -67,8 +67,6 @@ app.get('/ab*cd', (req,res) => {
 });
 
 
-const server = app.listen(port, () => {
-    const serverhost = server.address().address;
-    const serverport = server.address().port;
-    console.log("Exemplo de app express rodando em: http://%s:%s", serverhost, serverport);
+app.listen(port, () => {
+    console.log(`Serving on port ${port}`);
 })

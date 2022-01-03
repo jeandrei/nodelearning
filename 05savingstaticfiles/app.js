@@ -11,7 +11,7 @@
 
 //Pego a porta configurada lá no arquivo .env
 require('dotenv').config();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 //require no express
 const express = require('express');
@@ -29,8 +29,6 @@ app.get('/', function (req, res) {
    res.send('Hello World');
 });
 
-const server = app.listen(port, () => {
-    const serverhost = server.address().address;
-    const serverport = server.address().port;
-    console.log("Exemplo de app express rodando em: http://%s:%s", serverhost, serverport);
+app.listen(port, () => {
+    console.log(`Serving on port ${port}`);
 })

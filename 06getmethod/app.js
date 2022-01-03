@@ -16,7 +16,7 @@
 
 
 require('dotenv').config();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 const express = require('express');
 const app = express();
@@ -34,25 +34,25 @@ app.set('view engine', 'ejs');
 
 
 
-//Carrega o arquivo /views/people/index.ejs onde está o formulário
-app.get('/people/new', (req, res) => {
-    res.render('people/new');
+//Carrega o arquivo /views/cadastro/new.ejs onde está o formulário
+app.get('/cadastros/new', (req, res) => {
+    res.render('cadastros/new');
 })
 
 //O formulário está enviando os dados para a rota /people que é esta aqui
 //onde temos acesso aos dados enviados
-app.get('/people', async (req, res) => {
+app.get('/cadastros', async (req, res) => {
     response = {
-        first_name:req.query.first_name,
-        last_name:req.query.last_name
+        cadastroNome:req.query.cadastro.cadastroNome,
+        cadastroCpf:req.query.cadastro.cadastroCpf,
+        cadastroEmail:req.query.cadastro.cadastroEmail,
+        cadastroCelular:req.query.cadastro.cadastroCelular      
     };    
     console.log(response);
     res.end(JSON.stringify(response));
 })
 
 
-const server = app.listen(port, () => {
-    const serverhost = server.address().address;
-    const serverport = server.address().port;
-    console.log("Exemplo de app express rodando em: http://%s:%s", serverhost, serverport);
+app.listen(port, () => {
+    console.log(`Serving on port ${port}`);
 })
