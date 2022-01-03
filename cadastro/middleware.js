@@ -26,43 +26,37 @@ module.exports.verifyPassword = (req, res, next) => {
 
 
 
-
+//======================================================================
+//como usa validaSchema(schemaparavalidar, 'para/onder/redirecionar')
  module.exports.validaSchema = (schema, redirect) => {  
    return (req, res, next) => {    
       const validationResult = schema.validate(req.body, {
          abortEarly: false
-      });
-   
+      });   
+       
+      if(validationResult.error){       
+         res.render(redirect, { 
+            cadastro:{
+               _id:req.params.id
+            },
+            message: {
+               type: 'error',
+               body: 'Validation Error'
+            },
+            errors: joiErrorFormatter(validationResult.error),
+            formData: req.body.cadastro
+            });
       
       
-      //se tem id quer dizer que é uma atualização
-      if(req.params.id){
-         const { id } = req.params; 
-         const {cadastro2:{teste:'seilamano'}};
-      } 
- 
-         if(validationResult.error){       
-            res.render(redirect, { 
-               cadastro:{
-                  _id:id
-               },
-               message: {
-                  type: 'error',
-                  body: 'Validation Error'
-               },
-               errors: joiErrorFormatter(validationResult.error),
-               formData: req.body.cadastro
-               });
-         
-         
-            } else {
-               errors = {};
-               next();
-            }
-     
-   }//return
-}//module.exports
+         } else {
+            errors = {};
+            next();
+         } 
 
+   }//return
+
+}//module.exports
+//===============================================================================
 
 
 
