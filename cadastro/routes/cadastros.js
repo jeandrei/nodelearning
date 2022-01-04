@@ -5,7 +5,7 @@ const router = express.Router();
 
 const cadastros = require('../controllers/cadastros');
 
-const { middleware, verifyPassword, validaSchema } = require('../middleware');
+const { verifyPassword, validaSchema } = require('../middleware');
 
 //======================require na schema==========================================
 const { cadastroSchema } = require('../schemas.js');

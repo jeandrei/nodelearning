@@ -9,7 +9,7 @@
             <div class="mb-3">
                 <label class="form-label" for="cadastroNome">Nome:</label>
                 <input 
-                    class="form-control  <%= errors.cadastroNome ? 'is-invalid' : '' %>" 
+                    class="form-control <%= errors.cadastroNome ? 'is-invalid' : '' %>" 
                     type="text" id="cadastroNome" 
                     name="cadastro[cadastroNome]"
                     value="<%= formData.cadastroNome %>"
@@ -24,7 +24,7 @@
             <div class="mb-3">
                 <label class="form-label" for="cadastroCpf">Cpf:</label>
                 <input 
-                    class="form-control  <%= errors.cadastroCpf ? 'is-invalid' : '' %>"  
+                    class="form-control <%= errors.cadastroCpf ? 'is-invalid' : '' %>"  
                     type="text" 
                     id="cadastroCpf" 
                     name="cadastro[cadastroCpf]"
@@ -40,7 +40,7 @@
             <div class="mb-3">
                 <label class="form-label" for="cadastroEmail">Email:</label>
                 <input 
-                    class="form-control  <%= errors.cadastroEmail ? 'is-invalid' : '' %>" 
+                    class="form-control <%= errors.cadastroEmail ? 'is-invalid' : '' %>" 
                     type="text" 
                     id="cadastroEmail" 
                     name="cadastro[cadastroEmail]"
@@ -56,7 +56,7 @@
             <div class="mb-3">
                 <label class="form-label" for="cadastroCelular">Celular:</label>
                 <input 
-                    class="form-control  <%= errors.cadastroCelular ? 'is-invalid' : '' %>" 
+                    class="form-control <%= errors.cadastroCelular ? 'is-invalid' : '' %>" 
                     type="text" 
                     id="cadastroCelular" 
                     name="cadastro[cadastroCelular]"

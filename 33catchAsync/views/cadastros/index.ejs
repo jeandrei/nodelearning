@@ -1,0 +1,25 @@
+<% layout('layouts/boilerplate')%>
+
+<a class="btn btn-success mt-5 mb-5" href="/cadastros/new">Novo Cadastro</a>
+
+    <div class="row">
+        <h1 class="text-center mb-3">Cadastros</h1>
+        <div class="col-6 offset-3">
+            <% for(let cadastro of cadastros) { %>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <%= cadastro.cadastroNome %>
+                    </div>
+                    <div class="card-body">
+                        
+                        <h5 class="card-title">CPF: <%= cadastro.cadastroCpf %></h5>
+
+                        <p class="card-text">Email <%= cadastro.cadastroEmail %></p>
+                        <p class="card-text">Celular <%= cadastro.cadastroCelular %></p>
+
+                        <a href="cadastros/<%= cadastro._id %>" class="btn btn-primary">Ver</a>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>

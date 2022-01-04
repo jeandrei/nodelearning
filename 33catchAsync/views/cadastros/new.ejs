@@ -1,0 +1,61 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="row">
+   
+   <h1 class="text-center">Novo Cadastro</h1>
+   
+   <div class="col-6 offset-3">
+      <form action = "/cadastros" method = "POST">
+         
+         <!-- cadastroNome -->
+         <div class="mb-3">
+            <label class="form-label" for="cadastroNome">Nome:</label>
+            <input
+               class="form-control" 
+               type="text"
+               id="cadastroNome"
+               name="cadastro[cadastroNome]"
+            >
+         </div>
+
+         <!-- cadastroCpf -->
+         <div class="mb-3">
+            <label class="form-label" for="cadastroCpf">CPF:</label>
+            <input
+               class="form-control" 
+               type="text"
+               id="cadastroCpf"
+               name="cadastro[cadastroCpf]"
+            >
+         </div>
+
+         <!-- cadastroEmail -->
+         <div class="mb-3">
+            <label class="form-label" for="cadastroEmail">Email:</label>
+            <input
+               class="form-control" 
+               type="text"
+               id="cadastroEmail"
+               name="cadastro[cadastroEmail]"
+            >
+         </div>
+
+         <!-- cadastroCelular -->
+         <div class="mb-3">
+            <label class="form-label" for="cadastroCelular">Celular:</label>
+            <input
+               class="form-control" 
+               type="text"
+               id="cadastroCelular"
+               name="cadastro[cadastroCelular]"
+            >
+         </div>        
+
+         <!-- Botão Enviar -->          
+          <div class="mb-3">
+            <button class="btn btn-success">Enviar</button>
+        </div> 
+
+      </form> 
+   </div>
+</div>
