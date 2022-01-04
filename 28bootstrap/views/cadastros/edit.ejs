@@ -1,0 +1,38 @@
+<% layout('layouts/boilerplate')%>
+<h1>Edit Cadastro</h1>
+<form action = "/cadastros/<%= cadastro._id %>?_method=PUT" method = "POST">
+
+<label for="cadastroNome">Nome:</label>
+<input 
+   type="text"
+   id="cadastroNome"
+   name="cadastro[cadastroNome]"
+   value="<%= cadastro.cadastroNome %>"
+>
+
+<label for="cadastroCpf">CPF:</label>
+<input 
+   type="text"
+   id="cadastroCpf"
+   name="cadastro[cadastroCpf]"
+   value="<%= cadastro.cadastroCpf %>"
+>
+
+<label for="cadastroEmail">Email:</label>
+<input 
+   type="text"
+   id="cadastroEmail"
+   name="cadastro[cadastroEmail]"
+   value="<%= cadastro.cadastroEmail %>"
+>
+
+<label for="cadastroCelular">Celular:</label>
+<input 
+   type="text"
+   id="cadastroCelular"
+   name="cadastro[cadastroCelular]"
+   value="<%= cadastro.cadastroCelular %>"
+>
+
+<input type = "submit" value = "Submit">
+</form> 
